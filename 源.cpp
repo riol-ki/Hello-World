@@ -2,38 +2,38 @@
 
 using namespace std;
 
-#define MAX_TREE_SIZE 5								//¶¨Òå×î´ó½áµã¸öÊý
-typedef int ElemType;								//ÕûÐÎÎª¸Ã¶þ²æÊ÷µÄÔªËØÀàÐÍ
-typedef struct Cnode* BinTree;						//typedef½á¹¹ÌåÖ¸Õë
+#define MAX_TREE_SIZE 5								//å®šä¹‰æœ€å¤§ç»“ç‚¹ä¸ªæ•°
+typedef int ElemType;								//æ•´å½¢ä¸ºè¯¥äºŒå‰æ ‘çš„å…ƒç´ ç±»åž‹
+typedef struct Cnode* BinTree;						//typedefç»“æž„ä½“æŒ‡é’ˆ
 
-typedef struct Cnode {
-	ElemType data;
+typedef struct Cnode {									//dio
+	ElemType data;//hah
 	BinTree lchild;	
-	BinTree rchild;									//×óÓÒ×Ó½áµã
-}CNode;												//¶þ²æÊ÷µÄÁ´Ê½´æ´¢
+	BinTree rchild;									//å·¦å³å­ç»“ç‚¹
+}CNode;												//äºŒå‰æ ‘çš„é“¾å¼å­˜å‚¨
 
 
-BinTree BST_Insert(BinTree T, ElemType i)		//´«Èë¸ù½áµãºÍÒª²åÈëµÄ½áµãÔªËØ
+BinTree BST_Insert(BinTree T, ElemType i)		//ä¼ å…¥æ ¹ç»“ç‚¹å’Œè¦æ’å…¥çš„ç»“ç‚¹å…ƒç´ 
 {
-	if (T == NULL)								//·¢ÏÖÎÞ¸Ã½ÚµãÇÒÕÒµ½ÁËËûµÄÎ»ÖÃ
+	if (T == NULL)								//å‘çŽ°æ— è¯¥èŠ‚ç‚¹ä¸”æ‰¾åˆ°äº†ä»–çš„ä½ç½®
 	{
-		T = (BinTree)malloc(sizeof(CNode));		//·ÖÅäÄÚ´æ
+		T = (BinTree)malloc(sizeof(CNode));		//åˆ†é…å†…å­˜
 		T->data = i;
 		T->lchild = NULL;
 		T->rchild = NULL;
 	}
-	if (i < T->data)							//Ð¡ÓÚ¸Ã½áµãµÄÔªËØ
+	if (i < T->data)							//å°äºŽè¯¥ç»“ç‚¹çš„å…ƒç´ 
 	{
-		T->lchild = BST_Insert(T->lchild, i);	//ÕÒ×ó×ÓÊ÷
+		T->lchild = BST_Insert(T->lchild, i);	//æ‰¾å·¦å­æ ‘
 	}
-	if (i > T->data)							//´óÓÚ¸Ã½áµãµÄÔªËØ
+	if (i > T->data)							//å¤§äºŽè¯¥ç»“ç‚¹çš„å…ƒç´ 
 	{
-		T->rchild = BST_Insert(T->rchild, i);	//ÕÒÓÒ×ÓÊ÷
+		T->rchild = BST_Insert(T->rchild, i);	//æ‰¾å³å­æ ‘
 	}
 	return T;
 }
 
-void MidOrderTraverse(CNode* root)				//ÖÐÐò±éÀú
+void MidOrderTraverse(CNode* root)				//ä¸­åºéåŽ†
 {
 	if (root)
 	{
@@ -43,32 +43,32 @@ void MidOrderTraverse(CNode* root)				//ÖÐÐò±éÀú
 	}
 }
 
-int GetDepth(BinTree T)							//ÇóÉî¶È
+int GetDepth(BinTree T)							//æ±‚æ·±åº¦
 {
 	if (T == NULL)
 		return 0;
 	else {
 		int a = GetDepth(T->lchild);
-		int b = GetDepth(T->rchild);			//µÝ¹é
+		int b = GetDepth(T->rchild);			//é€’å½’
 		return (a > b) ? (a + 1) : (b + 1);
 	}
 }
 
 int main()
 {
-	int a[MAX_TREE_SIZE];						//´¢´æÔªËØµÄÊý×é
-	BinTree Root = NULL;						//¸ù½áµã
-	cout << "ÊäÈëÒª²åÈëµÄÊý¾Ý" << endl;
+	int a[MAX_TREE_SIZE];						//å‚¨å­˜å…ƒç´ çš„æ•°ç»„
+	BinTree Root = NULL;						//æ ¹ç»“ç‚¹
+	cout << "è¾“å…¥è¦æ’å…¥çš„æ•°æ®" << endl;
 	for (int i = 0; i < MAX_TREE_SIZE; i++)
 	{
-		cin >> a[i];							//Êý×é¸³Öµ
+		cin >> a[i];							//æ•°ç»„èµ‹å€¼
 	}
 	for (int i = 0; i < MAX_TREE_SIZE; i++)
 	{
-		Root=BST_Insert(Root, a[i]);			//¶à´Îµ÷ÓÃ²åÈëº¯Êý
+		Root=BST_Insert(Root, a[i]);			//å¤šæ¬¡è°ƒç”¨æ’å…¥å‡½æ•°
 	}
-	cout << "ÖÐÐò±éÀúµÄ½á¹ûÎª£º";
-	MidOrderTraverse(Root);						//ÖÐÐò±éÀú
+	cout << "ä¸­åºéåŽ†çš„ç»“æžœä¸ºï¼š";
+	MidOrderTraverse(Root);						//ä¸­åºéåŽ†
 	cout << endl;
-	cout<<"¸Ã¶þ²æÊ÷µÄ×î´óÉî¶ÈÎª£º"<< GetDepth(Root)<<endl;
+	cout<<"è¯¥äºŒå‰æ ‘çš„æœ€å¤§æ·±åº¦ä¸ºï¼š"<< GetDepth(Root)<<endl;
 }
