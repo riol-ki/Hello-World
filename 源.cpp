@@ -7,7 +7,7 @@ typedef int ElemType;								//整形为该二叉树的元素类型
 typedef struct Cnode* BinTree;						//typedef结构体指针
 
 typedef struct Cnode {									//dio
-	ElemType data;
+	ElemType data;//hah
 	BinTree lchild;	
 	BinTree rchild;									//左右子结点
 }CNode;												//二叉树的链式存储
